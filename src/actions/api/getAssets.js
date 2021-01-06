@@ -1,4 +1,4 @@
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import RNFetchBlob from 'rn-fetch-blob';
 
 export function getMSYS() {
