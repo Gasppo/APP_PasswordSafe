@@ -1,18 +1,16 @@
+import * as React from 'react';
 import {
-  Text,
-  View,
-  StyleSheet,
   Dimensions,
-  TouchableOpacity,
-  ScrollView,
-  Image,
   FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import {SafeAreaView} from 'react-navigation';
-import {useDispatch, useSelector} from 'react-redux';
-import {getMACCs} from '../src/actions/api/getManagedAccounts';
-import * as React from 'react';
+import {useSelector} from 'react-redux';
 import renderItem from '../components/maccItem';
+import {getMACCs} from '../src/actions/api/getManagedAccounts';
 
 const deviceHeight = Dimensions.get('window').height;
 

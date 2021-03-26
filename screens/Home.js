@@ -1,18 +1,17 @@
-import {
-  Text,
-  View,
-  StyleSheet,
-  Dimensions,
-  TouchableOpacity,
-  ScrollView,
-  Image,
-} from 'react-native';
-
 import * as React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import {
+  Dimensions,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import {useSelector} from 'react-redux';
 import {signinAPI} from '../src/actions/api/signin';
 import {signoutAPI} from '../src/actions/api/signout';
-import {getMSYS} from '../src/actions/api/getAssets';
+import Login from './Login';
 
 const deviceHeight = Dimensions.get('window').height;
 
@@ -20,82 +19,97 @@ const Home = ({navigation}) => {
   const state = useSelector((state) => state);
 
   return (
-    <View style={{backgroundColor: '#E7E9E9'}}>
-      <View style={styles.headerInsight}>
-        <Text style={styles.textoInsight}> BeyondInsight </Text>
-        <Image
-          source={require('../src/img/app-logo-default.png')}
-          style={styles.logoBT}
-          resizeMode="contain"
-        />
-        <Text>
-          {' '}
-          Usuario: {state.userName === 'N/A'
-            ? 'No conectado'
-            : state.userName}{' '}
-        </Text>
-      </View>
-      <ScrollView contentContainerStyle={styles.container}>
-        <View style={styles.fixToText}>
-          <TouchableOpacity
-            style={styles.cajon}
-            onPress={() => navigation.navigate('ManagedSystems')}>
-            <Text style={styles.textoCajon}> Managed Systems </Text>
-            <Image
-              source={require('../src/img/ManagedSysIcon.png')}
-              style={styles.logoCajon}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
+    <>
+      {state.userName === 'N/A' ? (
+        <>
+          <Login></Login>
+        </>
+      ) : (
+        <>
+          <View style={{backgroundColor: '#E7E9E9'}}>
+            <View style={styles.headerInsight}>
+              <Text style={styles.textoInsight}> BeyondInsight </Text>
+              <Image
+                source={require('../src/img/app-logo-default.png')}
+                style={styles.logoBT}
+                resizeMode="contain"
+              />
+              <Text>
+                {' '}
+                Usuario:{' '}
+                {state.userName === 'N/A'
+                  ? 'No conectado'
+                  : state.userName}{' '}
+              </Text>
+            </View>
+            <ScrollView contentContainerStyle={styles.container}>
+              <View style={styles.fixToText}>
+                <TouchableOpacity
+                  style={styles.cajon}
+                  onPress={() => navigation.navigate('ManagedSystems')}>
+                  <Text style={styles.textoCajon}> Managed Systems </Text>
+                  <Image
+                    source={require('../src/img/ManagedSysIcon.png')}
+                    style={styles.logoCajon}
+                    resizeMode="contain"
+                  />
+                </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.cajon}
-            onPress={() => navigation.navigate('PasswordSafe')}>
-            <Text style={styles.textoCajon}> Password Safe </Text>
-            <Image
-              source={require('../src/img/PsafeIcon.png')}
-              style={styles.logoCajon}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.fixToText}>
-          <TouchableOpacity
-            style={styles.cajon}
-            onPress={() => navigation.navigate('Requests')}>
-            <Text style={styles.textoCajon}> Solicitudes </Text>
-            <Image
-              source={require('../src/img/SolicitudesIcon.png')}
-              style={styles.logoCajon}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.cajon}
+                  onPress={() => navigation.navigate('PasswordSafe')}>
+                  <Text style={styles.textoCajon}> Password Safe </Text>
+                  <Image
+                    source={require('../src/img/PsafeIcon.png')}
+                    style={styles.logoCajon}
+                    resizeMode="contain"
+                  />
+                </TouchableOpacity>
+              </View>
+              <View style={styles.fixToText}>
+                <TouchableOpacity
+                  style={styles.cajon}
+                  onPress={() => navigation.navigate('Requests')}>
+                  <Text style={styles.textoCajon}> Solicitudes </Text>
+                  <Image
+                    source={require('../src/img/SolicitudesIcon.png')}
+                    style={styles.logoCajon}
+                    resizeMode="contain"
+                  />
+                </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.cajon}
-            onPress={() => navigation.navigate('Approve')}>
-            <Text style={styles.textoCajon}> Aprobar </Text>
-            <Image
-              source={require('../src/img/ApproveIcon.png')}
-              style={styles.logoCajon}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
-      <View style={styles.logout}>
-        {!state.loginStatus && (
-          <TouchableOpacity style={styles.botonLogout} onPress={signinAPI()}>
-            <Text style={{color: 'white'}}> Iniciar Sesion </Text>
-          </TouchableOpacity>
-        )}
-        {state.loginStatus && (
-          <TouchableOpacity style={styles.botonLogout} onPress={signoutAPI()}>
-            <Text style={{color: 'white'}}> Cerrar session </Text>
-          </TouchableOpacity>
-        )}
-      </View>
-    </View>
+                <TouchableOpacity
+                  style={styles.cajon}
+                  onPress={() => navigation.navigate('Approve')}>
+                  <Text style={styles.textoCajon}> Aprobar </Text>
+                  <Image
+                    source={require('../src/img/ApproveIcon.png')}
+                    style={styles.logoCajon}
+                    resizeMode="contain"
+                  />
+                </TouchableOpacity>
+              </View>
+            </ScrollView>
+            <View style={styles.logout}>
+              {!state.loginStatus && (
+                <TouchableOpacity
+                  style={styles.botonLogout}
+                  onPress={signinAPI()}>
+                  <Text style={{color: 'white'}}> Iniciar Sesion </Text>
+                </TouchableOpacity>
+              )}
+              {state.loginStatus && (
+                <TouchableOpacity
+                  style={styles.botonLogout}
+                  onPress={signoutAPI()}>
+                  <Text style={{color: 'white'}}> Cerrar session </Text>
+                </TouchableOpacity>
+              )}
+            </View>
+          </View>
+        </>
+      )}
+    </>
   );
 };
 

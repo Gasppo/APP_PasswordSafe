@@ -1,19 +1,18 @@
+import * as React from 'react';
 import {
-  Text,
-  View,
-  StyleSheet,
   Dimensions,
-  TouchableOpacity,
-  ScrollView,
-  Image,
   FlatList,
+  Image,
   RefreshControl,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import {SafeAreaView, withNavigation} from 'react-navigation';
-import {useDispatch, useSelector} from 'react-redux';
-import {getREQs} from '../src/actions/api/getRequests';
-import * as React from 'react';
+import {useSelector} from 'react-redux';
 import renderItem from '../components/reqItem';
+import {getREQs} from '../src/actions/api/getRequests';
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;

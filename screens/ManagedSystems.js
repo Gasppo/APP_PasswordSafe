@@ -1,18 +1,16 @@
+import * as React from 'react';
 import {
-  Text,
-  View,
-  StyleSheet,
   Dimensions,
-  TouchableOpacity,
-  ScrollView,
-  Image,
   FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import {SafeAreaView} from 'react-navigation';
-import {getMSYS} from '../src/actions/api/getAssets';
-import {useDispatch, useSelector} from 'react-redux';
-import * as React from 'react';
+import {useSelector} from 'react-redux';
 import renderItem from '../components/msysItem';
+import {getMSYS} from '../src/actions/api/getAssets';
 
 const deviceHeight = Dimensions.get('window').height;
 
