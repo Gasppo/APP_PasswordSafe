@@ -20,11 +20,12 @@ const Home = ({navigation}) => {
 
   return (
     <>
-      {state.userName === 'N/A' ? (
+      {!state.loginStatus && (
         <>
           <Login></Login>
         </>
-      ) : (
+      )}
+      {state.loginStatus && (
         <>
           <View style={{backgroundColor: '#E7E9E9'}}>
             <View style={styles.headerInsight}>
